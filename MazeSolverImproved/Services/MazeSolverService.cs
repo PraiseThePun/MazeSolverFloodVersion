@@ -15,10 +15,11 @@ namespace MazeSolverImproved.Services
         {
             var startCell = map.Cells.First().Value;
             var currentCell = startCell;
-            var endCell = map.Cells.Last().Value;
             var queue = new Queue<Cell>();
+            queue.Enqueue(currentCell);
 
-            while (currentCell != endCell){
+            while (queue.Count > 0){
+                currentCell = queue.Dequeue();
                 var adjacents = currentCell.Adjacents;
 
                 foreach (var cell in adjacents)
@@ -30,8 +31,6 @@ namespace MazeSolverImproved.Services
                         cell.Steps = currentCell.Steps + 1;
                     }
                 }
-
-                currentCell = queue.Dequeue();
             }
         }
     }
