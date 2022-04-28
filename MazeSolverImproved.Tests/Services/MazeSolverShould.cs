@@ -27,6 +27,7 @@ namespace MazeSolverImproved.Tests.Services
                 yield return new TestCaseData(ArrayMaps[0], ExpectedCellList[0]);
                 yield return new TestCaseData(ArrayMaps[1], ExpectedCellList[1]);
                 yield return new TestCaseData(ArrayMaps[2], ExpectedCellList[2]);
+                yield return new TestCaseData(ArrayMaps[3], ExpectedCellList[3]);
             }
         }
 
@@ -43,6 +44,10 @@ namespace MazeSolverImproved.Tests.Services
                         { 0, 1, 1 },
                         { 0, 1, 1 },
                         { 0, 1, 1 } },
+                    new int[,] {
+                        { 0, 1, 1 },
+                        { 0, 1, 1 },
+                        { 0, 1, 0 } },
                     new int[,] {
                         { 0, 1, 1 },
                         { 0, 0, 0 },
@@ -75,6 +80,18 @@ namespace MazeSolverImproved.Tests.Services
                         new Cell(new Point(0,2)) { Steps = 2 },
                         new Cell(new Point(1,2)) { IsWall= true },
                         new Cell(new Point(2,2)) { IsWall= true },
+                    },
+                    new List<Cell>()
+                    {
+                        new Cell(new Point(0,0)),
+                        new Cell(new Point(1,0)) { IsWall = true },
+                        new Cell(new Point(2,0)) { IsWall = true },
+                        new Cell(new Point(0,1)) { Steps = 1 },
+                        new Cell(new Point(1,1)) { IsWall = true },
+                        new Cell(new Point(2,1)) { IsWall = true },
+                        new Cell(new Point(0,2)) { Steps = 2 },
+                        new Cell(new Point(1,2)) { IsWall= true },
+                        new Cell(new Point(2,2)) { Steps = 0 },
                     },
                     new List<Cell>()
                     {
