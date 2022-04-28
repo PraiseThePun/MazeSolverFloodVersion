@@ -30,5 +30,19 @@ namespace MazeSolverImproved.Entities
 
             return "  " + Steps.ToString() + new string(' ', 3 - Steps.ToString().Length);
         }
+
+        public override bool Equals(object? obj)
+        {
+            var item = obj as Cell;
+
+            if(item == null)
+                return false;
+
+            if(this.Location == item.Location &&
+                this.IsWall == item.IsWall)
+                return true;
+
+            return false;
+        }
     }
 }

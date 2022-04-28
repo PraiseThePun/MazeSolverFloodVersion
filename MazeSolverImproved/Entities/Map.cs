@@ -16,7 +16,7 @@ namespace MazeSolverImproved.Entities
 
         public Dictionary<Point, Cell> Cells { get => cells; }
 
-        public void AddRelation(Point cellPointA, Point cellPointB)
+        private void AddRelation(Point cellPointA, Point cellPointB)
         {
             if (!cells[cellPointA].IsWall &&
                 !cells[cellPointB].IsWall)
@@ -42,29 +42,18 @@ namespace MazeSolverImproved.Entities
                         cell.IsWall = true;
 
                     cells.Add(location, cell);
-                }
-            }
-
-            for (int i = 0; i < arrayMap.GetLength(0); i++)
-            {
-                for (int j = 0; j < arrayMap.GetLength(1); j++)
-                {
-                    InitializeCellRelationships(new Point(j, i));
+                    InitializeCellRelationships(location);
                 }
             }
         }
 
-        private void InitializeCellRelationships(Point point)
+        private void InitializeCellRelationships(Point currentPoint)
         {
-            Point northPoint = new Point(point.X, point.Y - 1);
-            Point eastPoint = new Point(point.X + 1, point.Y);
-            Point southPoint = new Point(point.X, point.Y + 1);
-            Point westPoint = new Point(point.X - 1, point.Y);
+            var northPoint = new Point(currentPoint.X, currentPoint.Y - 1);
+            var westPoint = new Point(currentPoint.X - 1, currentPoint.Y);
 
-            TrySetNorthRelationShip(point, northPoint);
-            TrySetEastRelationShip(point, eastPoint);
-            TrySetSouthRelationShip(point, southPoint);
-            TrySetWestRelationShip(point, westPoint);
+            TrySetNorthRelationShip(currentPoint, northPoint);
+            TrySetWestRelationShip(currentPoint, westPoint);
         }
 
         private void TrySetNorthRelationShip(Point currentCell, Point northCell)
@@ -76,27 +65,8 @@ namespace MazeSolverImproved.Entities
             catch (KeyNotFoundException)
             {
             }
-        }        
-        private void TrySetEastRelationShip(Point currentCell, Point eastCell)
-        {
-            try
-            {
-                AddRelation(currentCell, eastCell);
-            }
-            catch (KeyNotFoundException)
-            {
-            }
-        }        
-        private void TrySetSouthRelationShip(Point currentCell, Point southCell)
-        {
-            try
-            {
-                AddRelation(currentCell, southCell);
-            }
-            catch (KeyNotFoundException)
-            {
-            }
-        }        
+        }   
+        
         private void TrySetWestRelationShip(Point currentCell, Point westCell)
         {
             try
