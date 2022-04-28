@@ -39,7 +39,8 @@ namespace MazeSolverImproved.Entities
                 return false;
 
             if(this.Location == item.Location &&
-                this.IsWall == item.IsWall)
+                this.IsWall == item.IsWall &&
+                this.Steps == item.Steps)
                 return true;
 
             return false;
